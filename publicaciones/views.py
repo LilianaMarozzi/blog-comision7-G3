@@ -1,5 +1,11 @@
 from django.shortcuts import render
+from .models import Publicacion
 
-# Create your views here.
+# Views basada en funciones para enlistar las publicaciones
 def publicaciones_view (request):
-    return render (request, 'publicaciones.html', {})    
+
+    ctx = {
+        'publicaciones' : Publicacion.objects.all()
+    }
+
+    return render (request, 'publicaciones.html', ctx)    
