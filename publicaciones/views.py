@@ -24,8 +24,15 @@ class PublicarView(CreateView):
     template_name = 'publicaciones/publicar.html'
     form_class = PublicarForm
 
+# View basada en clase para MODIFICAR publicaciones
 class ModificarPublicacionView(UpdateView):
     model = Publicacion
     template_name = 'publicaciones/modificar-publicacion.html'
     form_class = PublicarForm
+    success_url = '../ver-publicaciones'
+
+# View basada en clase para ELIMINAR publicaciones
+class EliminarPublicacionView(DeleteView):
+    model = Publicacion
+    template_name = 'publicaciones/eliminar-publicacion.html'
     success_url = '../ver-publicaciones'
