@@ -6,7 +6,7 @@
     <form method="post">{% csrf_token %}
         {{form}}
         <button type="submit">Iniciar Sesion</button>
-
+        <a href="{% url 'registrarse' %}">No tenés una cuenta? Create una!</a>
     </form>
     
 {% endblock contenido %}
