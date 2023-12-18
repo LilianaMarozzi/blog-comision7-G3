@@ -1,17 +1,12 @@
-from django.shortcuts import render
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from .models import Publicacion
+from django.urls import reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .forms import PublicarForm
-"""
-# Views basada en funciones para enlistar las publicaciones
-def publicaciones_view (request):
 
-    ctx = {
-        'publicaciones' : Publicacion.objects.all()
-    }
 
-    return render (request, 'publicaciones.html', ctx)    
-"""
 # View basada en clase para ENLISTAR publicaciones
 class PublicacionesView(ListView):
     model = Publicacion
@@ -23,6 +18,14 @@ class PublicarView(CreateView):
     model = Publicacion
     template_name = 'publicaciones/publicar.html'
     form_class = PublicarForm
+
+    def form_valid(self, form):
+        f = form.save(commit=False)
+        f.creador_id = self.request.user.id
+        return super().form_valid(f)
+    
+    def get_success_url(self):
+        return reverse('publicaciones')
 
 # View basada en clase para MODIFICAR publicaciones
 class ModificarPublicacionView(UpdateView):

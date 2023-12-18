@@ -2097,7 +2097,7 @@ input, select, textarea {
 			}
 
 				#nav > ul > li > ul {
-					display: none;
+					display: outside;
 				}
 
 				#nav > ul > li > a {
