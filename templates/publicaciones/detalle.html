@@ -27,21 +27,32 @@
 </form>
 
 <!--Caja para comentar-->
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 100%m; padding: 5px;">
     <div class="card-header">
+
       Comentarios
     </div>
     <ul class="list-group list-group-flush">
 
-
         
+        {% if publicacion.comentarios.all %}
         {% for comentario in publicacion.comentarios.all %}
+        <div class="comentario-header">
         <strong>{{comentario.creador}}</strong>
+        <!--boton eliminar (X)-->
+        <a href="{% url 'borrar-comentario' comentario.id %}"><i class="fa-regular fa-delete-left"></i></a>
+        <a href="{% url 'editar-comentario' comentario.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+        </div>
+
         <li class="list-group-item">{{comentario.texto}}</li>
         {% endfor %}
-            
-     
-      
+
+        {% else %}
+          <p>No hay comentarios aún</p>
+        {% endif %}
+          
+        
+
     </ul>
   </div>
 

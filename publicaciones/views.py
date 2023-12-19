@@ -2,7 +2,7 @@ from typing import Any
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Publicacion
+from .models import Publicacion, Comentario
 from django.urls import reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .forms import PublicarForm, ComentarioForm
@@ -55,6 +55,9 @@ class DetallePublicacion(DetailView):
     
     def post(self, request, *args, **kwargs):
 
+        if not self.request.user.is_authenticated:
+            return redirect('login')
+
         publicacion = self.get_object()
         form = ComentarioForm(request.POST)
 
@@ -66,4 +69,22 @@ class DetallePublicacion(DetailView):
             return super().get(request)
         else:
             return super().get(request)
+
+
+class BorrarComentarioView(DeleteView):
+    template_name= 'comentarios/borrar-comentario.html'
+    model= Comentario
+
+    def get_success_url(self):
+        return reverse('detalle-publicacion', args=[self.object.publicacion.id])
+    
+
+class EditarComentarioView(UpdateView):
+    template_name = 'comentarios/editar-comentario.html'
+    model= Comentario
+    form_class= ComentarioForm
+
+    def get_success_url(self):
+        return reverse('detalle-publicacion', args=[self.object.publicacion.id])
+    
 

@@ -6,5 +6,7 @@ urlpatterns = [
     path('publicar/', views.PublicarView.as_view(), name='publicar'),
     path('modificar/<int:pk>', views.ModificarPublicacionView.as_view(), name='modificar-publicacion'),
     path('eliminar/<int:pk>', views.EliminarPublicacionView.as_view(), name= 'eliminar-publicacion'),
-    path('detalle/<int:pk>', views.DetallePublicacion.as_view(), name='detalle-publicacion')
+    path('detalle/<int:pk>', views.DetallePublicacion.as_view(), name='detalle-publicacion'),
+    path('borrar-comentario/<int:pk>', views.BorrarComentarioView.as_view(), name= 'borrar-comentario'),
+    path('editar-comentario/<int:pk>', views.EditarComentarioView.as_view(), name= 'editar-comentario')
 ]
