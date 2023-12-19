@@ -1,10 +1,11 @@
+from typing import Any
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Publicacion
 from django.urls import reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .forms import PublicarForm
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from .forms import PublicarForm, ComentarioForm
 
 
 # View basada en clase para ENLISTAR publicaciones
@@ -39,3 +40,30 @@ class EliminarPublicacionView(DeleteView):
     model = Publicacion
     template_name = 'publicaciones/eliminar-publicacion.html'
     success_url = '../ver-publicaciones'
+
+#View para ver en detalle UNA PUBLICACION
+    
+class DetallePublicacion(DetailView):
+    model= Publicacion
+    template_name= 'publicaciones/detalle.html'
+    context_object_name= 'publicacion'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = ComentarioForm()
+        return context
+    
+    def post(self, request, *args, **kwargs):
+
+        publicacion = self.get_object()
+        form = ComentarioForm(request.POST)
+
+        if form.is_valid():
+            comentario = form.save(commit= False)
+            comentario.creador_id = self.request.user.id
+            comentario.publicacion = publicacion
+            comentario.save()
+            return super().get(request)
+        else:
+            return super().get(request)
+

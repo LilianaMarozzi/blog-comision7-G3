@@ -13,7 +13,7 @@
 
 <div class="row">
   <div class="col-4 col-6-medium col-12-small">
-    {{publicacion.fecha}}
+    {{publicacion.fecha}} - <strong>@{{publicacion.creador.username}}</strong>
     <span>
       <!-- Eliminar -->
       <a href="{% url 'eliminar-publicacion' publicacion.id %}"><i class="fa-regular fa-delete-left"></i></a>
@@ -28,7 +28,7 @@
           <p>{{publicacion.cuerpo}}</p>
           <footer>
               <ul class="actions">
-                  <li><a href="#" class="button alt">leer más</a></li>
+                  <li><a href="{% url 'detalle-publicacion' publicacion.id %}" class="button alt">leer más</a></li>
               </ul>
           </footer>
       </section>  
