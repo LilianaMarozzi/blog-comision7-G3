@@ -6,6 +6,8 @@ from .models import Publicacion, Comentario
 from django.urls import reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .forms import PublicarForm, ComentarioForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .mixins import ColaboradorMixin, CreadorMixin
 
 
 # View basada en clase para ENLISTAR publicaciones
@@ -15,7 +17,7 @@ class PublicacionesView(ListView):
     context_object_name = 'publicaciones'
 
 # View basada en clase para CREAR publicaciones
-class PublicarView(CreateView):
+class PublicarView(LoginRequiredMixin, ColaboradorMixin, CreateView):
     model = Publicacion
     template_name = 'publicaciones/publicar.html'
     form_class = PublicarForm
@@ -29,14 +31,14 @@ class PublicarView(CreateView):
         return reverse('publicaciones')
 
 # View basada en clase para MODIFICAR publicaciones
-class ModificarPublicacionView(UpdateView):
+class ModificarPublicacionView(LoginRequiredMixin, CreadorMixin, UpdateView):
     model = Publicacion
     template_name = 'publicaciones/modificar-publicacion.html'
     form_class = PublicarForm
     success_url = '../ver-publicaciones'
 
 # View basada en clase para ELIMINAR publicaciones
-class EliminarPublicacionView(DeleteView):
+class EliminarPublicacionView(LoginRequiredMixin, CreadorMixin, DeleteView):
     model = Publicacion
     template_name = 'publicaciones/eliminar-publicacion.html'
     success_url = '../ver-publicaciones'
@@ -71,7 +73,7 @@ class DetallePublicacion(DetailView):
             return super().get(request)
 
 
-class BorrarComentarioView(DeleteView):
+class BorrarComentarioView(LoginRequiredMixin, CreadorMixin, DeleteView):
     template_name= 'comentarios/borrar-comentario.html'
     model= Comentario
 
@@ -79,7 +81,7 @@ class BorrarComentarioView(DeleteView):
         return reverse('detalle-publicacion', args=[self.object.publicacion.id])
     
 
-class EditarComentarioView(UpdateView):
+class EditarComentarioView(LoginRequiredMixin, CreadorMixin, UpdateView):
     template_name = 'comentarios/editar-comentario.html'
     model= Comentario
     form_class= ComentarioForm

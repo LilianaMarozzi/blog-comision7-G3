@@ -6,8 +6,13 @@
 
 <header class="major">
   <h2>Publicaciones</h2>
-  <a href="{% url 'publicar' %}" 
-  class="button">Publicar algo nuevo</a>
+
+  
+  {% if user.es_colaborador or user.is_superuser %}
+  <a href="{% url 'publicar' %}" class="button">Publicar algo nuevo</a>
+  {% endif %}
+    
+  
 
 {% for publicacion in publicaciones  %}
 
