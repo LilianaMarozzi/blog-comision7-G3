@@ -25,6 +25,14 @@
 
 						
 						{% if user.is_authenticated %}
+						
+						{% if user.imagen_perfil %}
+						<img src="{{user.imagen_perfil.url}}" alt="" style="height: 40px; width: 40px; border-radius: 200px;">
+						{% else %}
+						<img src="{% static 'images/default-image.jpg' %}" alt="" style="height: 40px; width: 40px; border-radius: 200px;">
+
+						{% endif %}
+							
 						<a href="">{{user.first_name}}</a>
 						{% else %}
 						<a href="{% url 'login' %}">Iniciar Sesion</a>
@@ -38,6 +46,8 @@
 						<nav id="nav">
 							<ul>
 								<li class="current"><a href="{% url 'index' %}">Inicio</a></li>
+								<li class="current"><a href="{% url 'mi-perfil' %}">Mi perfil</a></li>
+
 								<li>
 									<a href="{% url 'publicaciones' %}">Publicaciones</a>
 									<ul> Categorías

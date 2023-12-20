@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from .models import Usuario
-from .forms import RegistarseForm
+from .forms import RegistarseForm, EditarPerfilForm
 from django.contrib.auth import login
+from django.urls import reverse
 
 # Create your views here.
 class RegistrarseView(CreateView):
@@ -15,3 +16,14 @@ class RegistrarseView(CreateView):
         usuario = form.save()
         login(self.request, usuario)
         return response
+    
+def mi_perfil_view(request):
+    return render(request, 'usuarios/mi-perfil.html', {})
+
+class EditarPerfilView(UpdateView):
+    template_name= 'usuarios/editar-perfil.html'
+    model= Usuario
+    form_class= EditarPerfilForm
+
+    def get_success_url(self):
+        return reverse('mi-perfil')
