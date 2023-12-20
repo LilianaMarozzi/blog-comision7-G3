@@ -16,6 +16,7 @@ class Publicacion(models.Model):
     cuerpo= models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, related_name='publicaciones', null=True)
     creador = models.ForeignKey(Usuario, related_name='publicaciones', on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='imagenes_publicaciones', null= True, blank= True)
 
 
     def __str__(self):
@@ -29,6 +30,6 @@ class Comentario(models.Model):
     texto= models.TextField()
     publicacion = models.ForeignKey(Publicacion, on_delete= models.CASCADE, related_name= 'comentarios')
     creador = models.ForeignKey(Usuario, related_name='comentarios', on_delete=models.CASCADE)
-
+    
     def __str__(self):
         return self.publicacion.titulo + "-" + self.creador.username
