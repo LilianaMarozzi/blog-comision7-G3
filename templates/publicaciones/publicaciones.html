@@ -7,6 +7,32 @@
 <header class="major">
   <h2>Publicaciones</h2>
 
+<form method="get">
+
+  <!--Filtro de categorías-->
+<select name="categoria" id="">
+  <option value="">Todas</option>
+
+  {% for categoria in categorias %}
+  <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+  {% endfor %}
+    
+</select>
+
+
+<!--Ordenar-->
+<select name="orderby" id="">
+  <option value="">Ordenar por</option>
+  <option value="fecha_asc">Fecha ascendente</option>
+  <option value="fecha_desc">Fecha descendente</option>
+  <option value="alf_asc">Alfabeticamente ascendente</option>
+  <option value="alf_desc">Alfabeticamente descendente</option>
+
+</select>
+
+<button type="submit">Filtrar categorias</button>
+
+</form>
   
   {% if user.es_colaborador or user.is_superuser %}
   <a href="{% url 'publicar' %}" class="button">Publicar algo nuevo</a>
@@ -31,6 +57,7 @@
               <h3>{{publicacion.titulo}}</h3>
           </header>
           <p>{{publicacion.cuerpo}}</p>
+          <p><i class="fa-solid fa-tag"></i>{{publicacion.categoria}}</p>
           <footer>
               <ul class="actions">
                   <li><a href="{% url 'detalle-publicacion' publicacion.id %}" class="button alt">leer más</a></li>
