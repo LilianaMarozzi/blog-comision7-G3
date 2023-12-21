@@ -52,7 +52,7 @@
       <a href="{% url 'modificar-publicacion' publicacion.id %}"><i class="fa-solid fa-pen-to-square"></i></a> 
     </span>
       <section class="box">
-          <a href="#" class="image featured"><img src="{% static 'images/pic02.jpg' %}" alt="" /></a>
+          <a href="#" class="image featured"><img src="{{ publicacion.imagen.url }}" alt="" /></a>
           <header>
               <h3>{{publicacion.titulo}}</h3>
           </header>
