@@ -119,3 +119,6 @@ class EditarComentarioView(LoginRequiredMixin, CreadorMixin, UpdateView):
         return reverse('detalle-publicacion', args=[self.object.publicacion.id])
     
 
+#Views para leer "acerca de"
+def acerca_view(request):
+    return render(request, 'acerca-de.html', {})

@@ -50,14 +50,16 @@
 
 								<li>
 									<a href="{% url 'publicaciones' %}">Publicaciones</a>
+									<!-- 
 									<ul> Categorías
 										<li><a href="#">Lorem ipsum dolor</a></li>
 										<li><a href="#">Magna phasellus</a></li>
 										<li><a href="#">Etiam dolore nisl</a></li>
 										<li><a href="#">Veroeros feugiat</a></li>
 									</ul>
+									 -->
 								</li>
-								<li><a href="#">Sobre nosotros</a></li>
+								<li><a href="{% url 'acerca-de' %}">Acerca de</a></li>
 								<li><a href="#">Contacto</a></li>
 								<li><a href="{% url 'login' %}">Loguearte</a></li>
 								<li><form method="post" action="{% url 'logout' %}">
