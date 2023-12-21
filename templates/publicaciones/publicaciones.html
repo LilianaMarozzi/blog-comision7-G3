@@ -5,44 +5,45 @@
   
 
 <header class="major">
-  <h2>Publicaciones</h2>
+  <h2>Todas las publicaciones</h2>
+</header>
 
-<form method="get">
+<div>
+  <form method="get">
 
-  <!--Filtro de categorías-->
-<select name="categoria" id="">
-  <option value="">Todas</option>
+    <!--Filtro de categorías-->
+    <select name="categoria" id="">
+      <option value="">Todas</option>
 
-  {% for categoria in categorias %}
-  <option value="{{categoria.id}}">{{categoria.nombre}}</option>
-  {% endfor %}
-    
-</select>
+      {% for categoria in categorias %}
+      <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+      {% endfor %}
+        
+    </select>
 
 
-<!--Ordenar-->
-<select name="orderby" id="">
-  <option value="">Ordenar por</option>
-  <option value="fecha_asc">Fecha ascendente</option>
-  <option value="fecha_desc">Fecha descendente</option>
-  <option value="alf_asc">Alfabeticamente ascendente</option>
-  <option value="alf_desc">Alfabeticamente descendente</option>
+    <!--Ordenar-->
+    <select name="orderby" id="">
+      <option value="">Ordenar por</option>
+      <option value="fecha_asc">Fecha ascendente</option>
+      <option value="fecha_desc">Fecha descendente</option>
+      <option value="alf_asc">Alfabéticamente ascendente</option>
+      <option value="alf_desc">Alfabéticamente descendente</option>
 
-</select>
+    </select>
 
-<button type="submit">Filtrar categorias</button>
+    <button type="submit">Filtrar categorias</button>
 
-</form>
-  
-  {% if user.es_colaborador or user.is_superuser %}
-  <a href="{% url 'publicar' %}" class="button">Publicar algo nuevo</a>
-  {% endif %}
-    
-  
+  </form>
+</div>
 
-{% for publicacion in publicaciones  %}
+{% if user.es_colaborador or user.is_superuser %}
+<a href="{% url 'publicar' %}" class="button">Publicar algo nuevo</a>
+{% endif %}
+ 
 
 <div class="row">
+  {% for publicacion in publicaciones  %}
   <div class="col-4 col-6-medium col-12-small">
     {{publicacion.fecha}} - <strong>@{{publicacion.creador.username}}</strong>
     <span>
@@ -52,7 +53,7 @@
       <a href="{% url 'modificar-publicacion' publicacion.id %}"><i class="fa-solid fa-pen-to-square"></i></a> 
     </span>
       <section class="box">
-          <a href="#" class="image featured"><img src="{{ publicacion.imagen.url }}" alt="" /></a>
+          <a href="#" class="image featured"><img src="" alt="" /></a>
           <header>
               <h3>{{publicacion.titulo}}</h3>
           </header>
@@ -60,14 +61,13 @@
           <p><i class="fa-solid fa-tag"></i>{{publicacion.categoria}}</p>
           <footer>
               <ul class="actions">
-                  <li><a href="{% url 'detalle-publicacion' publicacion.id %}" class="button alt">leer más</a></li>
+                  <li><a href="{% url 'detalle-publicacion' publicacion.id %}" class="button alt">Leer más</a></li>
               </ul>
           </footer>
       </section>  
-    </div>
   </div>
-
-{% endfor %}
+  {% endfor %}
+</div>
 
 
 {% endblock contenido %}

@@ -2,12 +2,12 @@
 
 
 {% block contenido %}
-
+<div class="col-md-5; d-flex justify-content-center">
     <form method="post">{% csrf_token %}
         {{form}}
-        <button type="submit">Iniciar Sesion</button>
-        <a href="{% url 'registrarse' %}">No tenés una cuenta? Create una!</a>
+        <button type="submit"  style="margin-top: 14px;">Iniciar Sesión</button>
+        <a href="{% url 'registrarse' %}"  style="margin-left: 5px;">No tenés cuenta? Create una!</a>
     </form>
-    
+</div>   
 {% endblock contenido %}
     
