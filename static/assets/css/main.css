@@ -1575,11 +1575,13 @@ input, select, textarea {
 	}
 
 		.box .image.featured {
-			position: relative;
+			position: center ;
 			width: auto;
+			height: 150px;
 			left: 1.75em;
 			top: 1.75em;
-			margin: -4.5em 0 4.25em -3.5em;
+			margin: 2em 2 2em 2em;
+			overflow: hidden;
 		}
 
 		.box.post header {
