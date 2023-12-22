@@ -32,13 +32,13 @@
 
     </select>
 
-    <button type="submit">Filtrar categorias</button>
+    <button type="submit" style="margin-top: 10px;">Filtrar categorias</button>
 
   </form>
 </div>
 
 {% if user.es_colaborador or user.is_superuser %}
-<a href="{% url 'publicar' %}" class="button">Publicar algo nuevo</a>
+<a href="{% url 'publicar' %}" class="button" style="margin-top: 10px; margin-bottom: 15px;">Publicar algo nuevo</a>
 {% endif %}
  
 

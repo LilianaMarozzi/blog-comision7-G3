@@ -27,8 +27,11 @@
 
 								<li><a href="{% url 'publicaciones' %}">Publicaciones</a>								</li>
 								<li><a href="{% url 'acerca-de' %}">Acerca de</a></li>
+								
+								<!--
 								<li><a href="#">Contacto</a></li>
-
+								-->
+								
 								<!-- Usuario -->
                                 {% if user.is_authenticated %}
                                 <li style="display:flex; align-items:center;">
@@ -83,33 +86,49 @@
 					<div class="container">
 						<div class="row">
 								<section>
-									
+									<!--
 									<p>
 									
-										<!-- This is <strong>Dopetrope</strong> a free, fully responsive HTML5 site template by
+										This is <strong>Dopetrope</strong> a free, fully responsive HTML5 site template by
 										<a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net/">HTML5 UP</a> It's released for free under
 										the <a href="http://html5up.net/license/">Creative Commons Attribution</a> license so feel free to use it for any personal or commercial project &ndash; just don't forget to credit us!
-									 -->
+									 
 									</p>
+									-->
 									<footer>
 										<ul class="actions">
-											<li><a href="#" class="button">Volver</a></li>
+											<li><a href="#" class="button">Volver arriba</a></li>
 										</ul>
 									</footer>
 								</section>
 								
 								<section>
 									<header>
-										<h2>Seguinos en nuestras redes</h2>
+										<h2><u>Contacto</u></h2> 
+									</header>
+									<header>
+										<h3>Contactanos a través de nuestras redes personales:</h3>
 									</header>
 									<ul class="social">
-										<li><a class="icon brands fa-facebook-f" href="#"><span class="label">Facebook</span></a></li>
+										<li><a class="icon brands fa-facebook-f" href="https://m.facebook.com/marinad.judkevich.3"><span class="label">Facebook</span></a></li>
+										<li><a class="fa-brands fa-researchgate" href="https://www.researchgate.net/profile/Marina-Judkevich"><span class="label"></span></a></li>
+										<!-- 
 										<li><a class="icon brands fa-twitter" href="#"><span class="label">Twitter</span></a></li>
 										<li><a class="icon brands fa-dribbble" href="#"><span class="label">Dribbble</span></a></li>
 										<li><a class="icon brands fa-tumblr" href="#"><span class="label">Tumblr</span></a></li>
 										<li><a class="icon brands fa-linkedin-in" href="#"><span class="label">LinkedIn</span></a></li>
+										-->
+										
 									</ul>
 									<ul class="contact">
+										<header>
+											<h3>O escribinos a nuestros correos electrónicos:</h3>
+										</header>
+										<li>
+											<h3>Emails</h3>
+											<p><a href="#">florencia.short1@gmail.com</p>
+											<p><a href="#">lilimarozzi@gmail.com</p>
+										</li>
 										<li>
 											<h3>Direccion</h3>
 											<p>
@@ -118,14 +137,11 @@
 												Chaco, Argentina
 											</p>
 										</li>
-										<li>
-											<h3>Email</h3>
-											<p><a href="#">someone@untitled.tld</a></p>
-										</li>
+										<!-- 
 										<li>
 											<h3>Telefono</h3>
 											<p>(800) 000-0000</p>
-										</li>
+										</li> -->
 									</ul>
 								</section>
 							</div>
