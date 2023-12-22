@@ -20,51 +20,32 @@
 					<!-- Logo -->
 						<h1><a href="index.html">GAMEVERSE</a></h1>
 
-					<!-- User -->
-					<span style="position: fixed; right: 3cm; top: 1cm;"> 
-
-						
-						{% if user.is_authenticated %}
-						
-							{% if user.imagen_perfil %}
-								<img src="{{user.imagen_perfil.url}}" alt="" style="height: 40px; width: 40px; border-radius: 200px;">
-								{% else %}
-								<img src="{% static 'images/default-image.jpg' %}" alt="" style="height: 40px; width: 40px; border-radius: 200px;">
-					
-							{% endif %}
-								
-							<a href="">{{user.first_name}}</a>
-							{% else %}
-							<a href="{% url 'login' %}">Iniciar Sesión</a>
-							
-						{% endif %}
-							
-
-					</span>
-
 					<!-- Nav -->
 						<nav id="nav">
-							<ul>
+							<ul style="display: flex; align-items: center; justify-content: center;">
 								<li class="current"><a href="{% url 'index' %}">Inicio</a></li>
 
-								<li>
-									<a href="{% url 'publicaciones' %}">Publicaciones</a>
-									<!-- 
-									<ul> Categorías
-										<li><a href="#">Lorem ipsum dolor</a></li>
-										<li><a href="#">Magna phasellus</a></li>
-										<li><a href="#">Etiam dolore nisl</a></li>
-										<li><a href="#">Veroeros feugiat</a></li>
-									</ul>
-									 -->
-								</li>
+								<li><a href="{% url 'publicaciones' %}">Publicaciones</a>								</li>
 								<li><a href="{% url 'acerca-de' %}">Acerca de</a></li>
 								<li><a href="#">Contacto</a></li>
 
 								<!-- Usuario -->
                                 {% if user.is_authenticated %}
-                                <li>
-									<a href="{% url 'mi-perfil' %}">{{user.first_name}}</a>
+                                <li style="display:flex; align-items:center;">
+									{% if user.imagen_perfil %}
+									<img src="{{user.imagen_perfil.url}}" alt="" style="height: 40px; width: 40px; border-radius: 200px;">
+									{% else %}
+									<img src="{% static 'images/default-image.jpg' %}" alt="" style="height: 40px; width: 40px; border-radius: 200px;">
+									{% endif %}
+									<a href="">{{user.first_name}}</a>
+									<ul style="display: flex; flex-direction: column; align-items: center;">
+										<li><a href="{% url 'mi-perfil' %}">Mi perfil</a></li>
+										<li>
+											<form method="post" action="{% url 'logout' %}"> {% csrf_token %}
+											<button type="submit">Cerrar sesión</button>
+											</form>
+										</li> 
+									</ul>	
 								</li>
                                 {% else %}
                                 <li>
@@ -72,14 +53,10 @@
 								</li>
                                 {% endif %}
 
-								<li><form method="post" action="{% url 'logout' %}">
-									{% csrf_token %}
-									<button type="submit">Cerrar sesión</button>
-								</form></li>
+								
 
 							</ul>
 						</nav>
-
 				</section>
 
 			<!-- Main -->

@@ -12,6 +12,6 @@ class ComentarioForm(forms.ModelForm):
         model = Comentario
         fields = ['texto']
         labels = {
-            'texto': '',
+            'texto': 'Escribe algo interesante:',
         }
 
