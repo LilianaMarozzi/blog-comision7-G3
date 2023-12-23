@@ -54,10 +54,11 @@
     </span>
       <section class="box">
           <p><i class="fa-solid fa-tag" style="margin-right: 5px;"></i>{{publicacion.categoria}}</p>
-          
+
           {% if publicacion.imagen %}           
           <a href="#" class="image featured"><img src="{{ publicacion.imagen.url }}" alt="" /></a>
           {% endif %}
+
           <header>
               <h3>{{publicacion.titulo}}</h3>
           </header>
@@ -68,6 +69,22 @@
               </ul>
           </footer>
       </section>  
+
+      <form action="{% url 'me-gusta' %}" method="post">{% csrf_token %}
+        <input type="hidden" value="{{publicacion.id}}" name="publicacion_id">
+
+        
+        {% if user in publicacion.me_gusta.all %}
+        <button type="submit">Ya no me gusta</button>
+        {% else %}
+        <button type="submit">Me gusta</button>
+        {% endif %}
+          
+
+      </form>
+
+      Likes: {{ publicacion.me_gusta.count }}
+
   </div>
   {% endfor %}
 </div>
