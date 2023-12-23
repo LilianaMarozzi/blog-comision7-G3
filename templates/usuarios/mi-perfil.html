@@ -3,31 +3,47 @@
 
 
 {% block contenido %}
-<div class="card" style="width: 40%;">
-    
-    {% if user.imagen_perfil %}
-    <img src="{{user.imagen_perfil.url}}" class="card-img-top" alt="imagen de perfil">
-    {% else %}
-    <img src="{% static 'images/default-image.jpg' %}" class="card-img-top" alt="imagen de perfil">
 
-    {% endif %}
-        
-    <div class="card-body">
-      <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">{{user.username}}</li>
-      
-      {% if user.telefono %}
-      <li class="list-group-item">{{user.telefono}}</li>
+<header class="major">
+  <h2>Mi perfil</h2>
+</header>
 
-      {% endif %}
-        
-      <li class="list-group-item">{{user.domicilio}}</li>
-    </ul>
-    <div class="card-body">
-      <a href="{% url 'editar-perfil' user.id %}" class="card-link">Editar perfil</a>
-    </div>
+<div class="card mb-3;" style="width: 50%;">
+  <div class="row g-0"> 
+      <div class="col-md-5">
+        {% if user.imagen_perfil %}
+        <img src="{{user.imagen_perfil.url}}" class="card-img-top" alt="imagen de perfil">
+        {% else %}
+        <img src="{% static 'images/default-image.jpg' %}" class="card-img-top" alt="imagen de perfil">
+        {% endif %}
+      </div>
+
+      <div class="col-md-7"> 
+        <div class="card-body">
+          <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Username: {{user.username}}</li>
+          
+          {% if user.telefono %}
+          <li class="list-group-item">Teléfono: {{user.telefono}}</li>
+          {% else %}
+          <li class="list-group-item">Teléfono: </li>
+          {% endif %}
+          
+          {% if user.domicilio %}         
+          <li class="list-group-item">{{user.domicilio}}</li>
+          {% else %}
+          <li class="list-group-item">Domicilio: </li>
+
+          {% endif %}
+
+        </ul>
+        <div class="card-body">
+          <a href="{% url 'editar-perfil' user.id %}" class="card-link">Editar perfil</a>
+        </div>
+      </div>
   </div>
+</div>
 {% endblock contenido %}
     

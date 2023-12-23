@@ -10,4 +10,4 @@ class RegistarseForm(UserCreationForm):
 class EditarPerfilForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['email', 'telefono', 'domicilio', 'imagen_perfil']
+        fields = ['first_name', 'last_name','email', 'telefono', 'domicilio', 'imagen_perfil']
