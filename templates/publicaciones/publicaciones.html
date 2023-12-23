@@ -8,32 +8,36 @@
   <h2>Todas las publicaciones</h2>
 </header>
 
-<div>
+<div class="card" style="background-color: #F7F7F7; padding: 10px; margin-bottom: 20px; margin-top: -15px;">
   <form method="get">
 
     <!--Filtro de categorías-->
-    <select name="categoria" id="">
-      <option value="">Todas</option>
+    <div>
+      <select name="categoria" id="" class="form-select" aria-label="Default select example">
+        <option value="">Elegir categoría</option>
 
-      {% for categoria in categorias %}
-      <option value="{{categoria.id}}">{{categoria.nombre}}</option>
-      {% endfor %}
-        
-    </select>
+        {% for categoria in categorias %}
+        <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+        {% endfor %}
+          
+      </select>
+   </div>
 
 
     <!--Ordenar-->
-    <select name="orderby" id="">
-      <option value="">Ordenar por</option>
-      <option value="fecha_asc">Fecha ascendente</option>
-      <option value="fecha_desc">Fecha descendente</option>
-      <option value="alf_asc">Alfabéticamente ascendente</option>
-      <option value="alf_desc">Alfabéticamente descendente</option>
+    <div>
+      <select name="orderby" id="" class="form-select" aria-label="Default select example">
+        <option value="">Ordenar por</option>
+        <option value="fecha_asc">Fecha ascendente</option>
+        <option value="fecha_desc">Fecha descendente</option>
+        <option value="alf_asc">Alfabéticamente ascendente</option>
+        <option value="alf_desc">Alfabéticamente descendente</option>
+      </select>
+    </div>
 
-    </select>
-
-    <button type="submit" style="margin-top: 10px;">Filtrar categorias</button>
-
+    <div>
+      <button type="submit;" class="btn btn-secondary" style="margin-top: 10px;  font-weight: 500; padding: 0.4em 0.6em 0.4em 0.6em;">Filtrar publicaciones</button>
+    </div>
   </form>
 </div>
 
@@ -52,38 +56,40 @@
       <!-- Editar -->
       <a href="{% url 'modificar-publicacion' publicacion.id %}"><i class="fa-solid fa-pen-to-square"></i></a> 
     </span>
-      <section class="box">
-          <p><i class="fa-solid fa-tag" style="margin-right: 5px;"></i>{{publicacion.categoria}}</p>
+    <section class="box">
+      <p><i class="fa-solid fa-tag" style="margin-right: 5px;"></i>{{publicacion.categoria}}</p>
 
-          {% if publicacion.imagen %}           
-          <a href="#" class="image featured"><img src="{{ publicacion.imagen.url }}" alt="" /></a>
+      {% if publicacion.imagen %}           
+      <a href="#" class="image featured"><img src="{{ publicacion.imagen.url }}" alt="" /></a>
+      {% endif %}
+
+      <header>
+        <h3>{{publicacion.titulo}}</h3>
+      </header>
+      <p>{{publicacion.preview_truncada}}(...)</p>
+      <footer>
+        <ul style="justify-content: space-between">
+          <a href="{% url 'detalle-publicacion' publicacion.id %}" class="button alt;" style="padding: 0.5em 1.2em 0.55em 1.2em; background-color: rgb(31, 31, 31);">Leer más</a>
+          {% if user.is_authenticated %}
+          <form action="{% url 'me-gusta' %}" method="post" style="display: inline-block;">{% csrf_token %}
+            <input type="hidden" value="{{publicacion.id}}" name="publicacion_id">
+              
+              {% if user in publicacion.me_gusta.all %}
+
+              <button type="submit" style="padding: 0.5em 1.2em 0.55em 1.2em; ">Ya no me gusta</button>
+              {% else %}
+              <button type="submit" style="padding: 0.5em 1.2em 0.55em 1.2em; ">Me gusta</button>
+              {% endif %}
+              
+          </form>
+          {% else %}
+          <a href="{% url 'login' %}" class="button alt;" style="padding: 0.5em 1.2em 0.55em 1.2em;">Me gusta</a>
           {% endif %}
-
-          <header>
-              <h3>{{publicacion.titulo}}</h3>
-          </header>
-          <p>{{publicacion.preview_truncada}}(...)</p>
-          <footer>
-              <ul class="actions">
-                  <li><a href="{% url 'detalle-publicacion' publicacion.id %}" class="button alt">Leer más</a></li>
-              </ul>
-          </footer>
-      </section>  
-
-      <form action="{% url 'me-gusta' %}" method="post">{% csrf_token %}
-        <input type="hidden" value="{{publicacion.id}}" name="publicacion_id">
-
-        
-        {% if user in publicacion.me_gusta.all %}
-        <button type="submit">Ya no me gusta</button>
-        {% else %}
-        <button type="submit">Me gusta</button>
-        {% endif %}
-          
-
-      </form>
-
-      Likes: {{ publicacion.me_gusta.count }}
+            
+        </ul>
+        <div style="display: inline-flex; float: right;"> Likes: {{ publicacion.me_gusta.count }} </div>
+      </footer>
+    </section> 
 
   </div>
   {% endfor %}
