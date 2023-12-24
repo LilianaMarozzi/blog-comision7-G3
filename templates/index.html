@@ -2,46 +2,37 @@
 {% load static %}
 
 {% block contenido %}
-
-    			<!-- Main -->
-                <section id="main">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
+   
+<!-- Sección de noticias/novedades -->
+<section>
+<header class="major" style="padding-top: -15;">
+    <h2>Lo más destacado</h2>
+</header>
     
-                                <!-- Sección de noticias/novedades -->
-                                <section>
-                                    <header class="major">
-                                        <h2>Lo más destacado</h2>
-                                    </header>
+<div class="row">
+    {% for posteo in mejores_posteo %}
+    <div class="col-4 col-6-medium col-12-small">                                      
+        <section class="box">
+            
+            {% if posteo.imagen %}
+            <a href="#" class="image featured"><img src="{{posteo.imagen.url}}" alt="" /></a>
+            {% endif %}
+                
+            <header>
+                <h3>{{posteo.titulo}}</h3>
+            </header>
+            <p>{{posteo.preview_truncada}}(...)</p>
+            <footer>
+                <ul class="actions">
+                    <li><a href="{% url 'detalle-publicacion' posteo.id %}" class="button alt">leer más</a></li>
+                </ul>
+            </footer>
+        </section>
+    </div>
+    {% endfor %}
                                         
-                                    <div class="row">
-                                        {% for posteo in mejores_posteo %}
-                                        <div class="col-4 col-6-medium col-12-small">                                      
-                                            <section class="box">
-                                                
-                                                {% if posteo.imagen %}
-                                                <a href="#" class="image featured"><img src="{{posteo.imagen.url}}" alt="" /></a>
-                                                {% endif %}
-                                                    
-                                                <header>
-                                                    <h3>{{posteo.titulo}}</h3>
-                                                </header>
-                                                <p>{{posteo.preview_truncada}}(...)</p>
-                                                <footer>
-                                                    <ul class="actions">
-                                                        <li><a href="{% url 'detalle-publicacion' posteo.id %}" class="button alt">leer más</a></li>
-                                                    </ul>
-                                                </footer>
-                                            </section>
-                                        </div>
-                                        {% endfor %}
-                                                                           
-                                        </div>
-                                    </section>    
-                            </div>
-                        </div>
-                    </div>
-                </section>
+    </div>
+</section>    
+
 {% endblock contenido %}
     

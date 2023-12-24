@@ -2070,7 +2070,7 @@ input, select, textarea {
 		position: relative;
 		background: #ffffff;
 		border-bottom: solid 1px #ccc;
-		padding: 5em 0 4em 0;
+		padding: 4em 0 4em 0;
 		text-align: center;
 	}
 
@@ -2078,7 +2078,7 @@ input, select, textarea {
 			color: #252122;
 			font-weight: 900;
 			font-size: 2.5em;
-			letter-spacing: -0.035em;
+			letter-spacing: 0.35em;
 			line-height: 1;
 		}
 
@@ -2175,14 +2175,14 @@ input, select, textarea {
 /* Banner */
 
 	#banner {
-		background: #CCE8F4 url("../../images/pic01.jpg");
-		background-position: center center;
-		background-size: auto 100%;
+		background: #CCE8F4 url("../../images/header-img.jpg");
+		background-position: center;
+		background-size: cover;
 		background-repeat: no-repeat;
 		text-align: center;
 		position: relative;
 		padding: 8em 0;
-		margin: 4em 0 0 0;
+		margin: 2em 0 0 0;
 	}
 
 		#banner header {
