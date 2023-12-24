@@ -25,8 +25,12 @@
 <div class="row">
     {% for posteo in mejores_posteo %}
     <div class="col-4 col-6-medium col-12-small">                                      
-        <section class="box">
-            
+        <section class="box" style="padding-top: 1.75em;">
+
+            <div style="text-align: center; padding-bottom: 1em;">
+                <i class="fa-solid fa-thumbs-up" style="display: block;"></i> {{ posteo.me_gusta.count }}
+            </div>
+
             {% if posteo.imagen %}
             <a href="#" class="image featured"><img src="{{posteo.imagen.url}}" alt="" /></a>
             {% endif %}
@@ -37,7 +41,7 @@
             <p>{{posteo.preview_truncada}}(...)</p>
             <footer>
                 <ul class="actions">
-                    <li><a href="{% url 'detalle-publicacion' posteo.id %}" class="button alt">leer más</a></li>
+                    <li><a href="{% url 'detalle-publicacion' posteo.id %}" class="button alt">Leer más</a></li>
                 </ul>
             </footer>
         </section>

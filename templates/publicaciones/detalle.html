@@ -33,8 +33,6 @@
       Comentarios
     </div>
     <ul class="list-group list-group-flush">
-
-        
         {% if publicacion.comentarios.all %}
         {% for comentario in publicacion.comentarios.all %}
 
@@ -50,7 +48,7 @@
         {% endfor %}
 
         {% else %}
-          <p>No hay comentarios aún</p>
+          <li class="list-group-item" style="padding: 1em 1em 1.2em;">No hay comentarios aún.</li>
         {% endif %}
         
         <div style="padding: 1em 1em">
