@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index_view, name='index'),
+    path('', views.IndexView.as_view(), name='index'),
 
     #aca van los includes
     path('publicaciones/', include('publicaciones.urls')),
