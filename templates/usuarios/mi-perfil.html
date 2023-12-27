@@ -38,6 +38,11 @@
 
           {% endif %}
 
+          
+          {% if user.es_colaborador %}
+          <li class="list-group-item"><strong>Eres colaborador/a.</strong></li>
+          {% endif %}
+            
         </ul>
         <div class="card-body">
           <a href="{% url 'editar-perfil' user.id %}" class="card-link">Editar perfil</a>
