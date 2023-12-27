@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-)ohx)5srg(8r7_nu_4_xdj+-wi@a%(fjs_+^foa@z4x9%33=%h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['gameverseC7G3.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 #VARIABLES DE LOGIN
 LOGIN_URL = '/usuarios/login'
