@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-)ohx)5srg(8r7_nu_4_xdj+-wi@a%(fjs_+^foa@z4x9%33=%h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gameverseC7G3.pythonanywhere.com']
 
 #VARIABLES DE LOGIN
 LOGIN_URL = '/usuarios/login'
@@ -64,7 +64,7 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
