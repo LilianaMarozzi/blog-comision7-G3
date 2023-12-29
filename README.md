@@ -77,6 +77,7 @@ _Este proyecto fue desarrollado gracias a la colaboración de:_
 * **Florencia Short** - Alumna.
 * **Liliana Marozzi** - Alumna.
 * **Marina Judkevich** - Alumna.
+* **Candela Suarez** - Alumna. 
 * **...** 
 * **...** 
 
